@@ -1,13 +1,13 @@
-import { checkType } from './../src/sudoku.js';
-
-describe ('Sudoku', function() {
-  var reusableSequence = [1,2,3,4,5,6,7,8,9];
-
-  it ('should test whether inputs are numbers', function() {
-    expect(checkType(reusableSequence)).toEqual("nine numbers");
-  });
-  
-});
+// import { checkType } from './../src/backend.js';
+//
+// describe ('puppy', function() {
+//   var reusableSequence = [1,2,3,4,5,6,7,8,9];
+//
+//   it ('should test whether inputs are numbers', function() {
+//     expect(checkType(reusableSequence)).toEqual("nine numbers");
+//   });
+//
+// });
 
 
 
