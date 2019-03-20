@@ -1,23 +1,69 @@
-import {APIcall} from './backend.js';
+// import {APIcall} from './backend.js';
+// import $ from 'jquery';
+//
+//
+// $(document).ready(function() {
+//   $('#weatherLocation').click(function() {
+//     let city = $('#location').val();
+//     $('#location').val("");
+//
+//     const newAPIcall = new APIcall(city);
+//     const returnData = newAPIcall.getData();
+//         returnData.then(function(response) {
+//           let body = JSON.parse(response);
+//           $('.showHumidity').text(`The humidity in ${city} is ${body.main.humidity}%`);
+//           $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees.`);
+//         }, function(error) {
+//           $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+//         });
+//
+//
+//   });
+// });
+
+import {UserData} from './backend.js';
+import './sass/styles.scss';
 import $ from 'jquery';
 
-
 $(document).ready(function() {
-  $('#weatherLocation').click(function() {
-    let city = $('#location').val();
-    $('#location').val("");
+  $('.userForm').submit(function(event) {
+    event.preventDefault();
+    const userNumber = $('#selectedNumber').val();
+    const userGender = $('#gender').val();
 
-    const newAPIcall = new APIcall(city);
-    const returnData = newAPIcall.getData();
-    console.log(returnData);
-        returnData.then(function(response) {
-          let body = JSON.parse(response);
-          $('.showHumidity').text(`The humidity in ${city} is ${body.main.humidity}%`);
-          $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees.`);
-        }, function(error) {
-          $('.showErrors').text(`There was an error processing your request: ${error.message}`);
-        });
+    const users = new UserData(userNumber, userGender);
+    const userData = users.getData();
+    userData.then(function(response) {
+      const userDataObject = JSON.parse(response);
+      console.log(userDataObject);
+    userDataObject.results.sort(function(a,b){
+      if(a.name.last > b.name.last){
+        return 1;
+      }
+      if(a.name.last < b.name.last){
+        return -1;
+      }
+      return 0;
+    });
+    $('.results').text("")
+      userDataObject.results.forEach(function(user){
+        $('.results').append(`
+          <div id="${user.name.first+user.name.last}" class="user">
+            <p>${user.name.first+" "+user.name.last}</p>
+            <img src='${user.picture.large}'>
+          </div>`);
+          $(`#${user.name.first+user.name.last}`).click(function(){
+            const profileInfo= users.getIndividual(user.name.first,user.name.last);
+            profileInfo.then(function(response){
+              const parsedInfo= JSON.parse(response);
+              const phone = parsedInfo.results[0].name.first;
+              console.log(phone);
+            })
+          })
+      });
+    })
+  })
 
 
-  });
-});
+
+})

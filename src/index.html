@@ -1,17 +1,32 @@
 <html>
   <head>
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
     <title>Weather</title>
   </head>
   <body>
     <div class="container">
-      <h1>Get Weather Conditions From Anywhere!</h1>
+      <!-- <h1>Get Weather Conditions From Anywhere!</h1>
       <label for="location">Enter a location:</label>
       <input id="location" type="text">
       <button class="btn-success" id="weatherLocation">Get Current Humidity!</button>
       <div class="errors"></div>
       <div class="showHumidity"></div>
-      <div class="showTemp"></div>
+      <div class="showTemp"></div> -->
+      <form class="userForm">
+        <input type="number" id="selectedNumber" min="0" max="1000">
+        <label for="selectedNumber">Enter desired # of users: </label>
+        <select id="gender">
+          <option value="all">All</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+        <label for="gender">Please select a gender: </label>
+
+        <button type="submit" name="button" id="enter">Submit</button>
+      </form>
+      <div class="results">
+
+      </div>
     </div>
   </body>
 </html>
