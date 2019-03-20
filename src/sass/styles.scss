@@ -9,11 +9,21 @@ body {
 }
 
 .user{
+height:300px;
 background-color:white;
 padding:10px;
 border-radius:10px;
 margin:10px;
-p{
+  h3{
  border-bottom:2px solid black;
+  }
 }
+
+.additionalInfo{
+  display: none;
+}
+.selected{
+  .additionalInfo{
+    display: block;
+  }
 }
