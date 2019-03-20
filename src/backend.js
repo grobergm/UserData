@@ -43,19 +43,8 @@ export class UserData {
       myRequest.send();
     });
   }
-  getIndividual(firstName,lastName){
-    return new Promise((resolve, reject)=>{
-      const infoRequest = new XMLHttpRequest();
-      const url = `https://randomuser.me/api/?name.first=${firstName}&name.last=${lastName}`;
-      infoRequest.onload = function(){
-        if(this.status===200){
-          resolve(infoRequest.response)
-        } else {
-          reject(Error(request.statusText))
-        }
-      }
-      infoRequest.open("GET",url,true);
-      infoRequest.send();
-    })
+  findIndividual(users){
+    users
+
   }
 }

@@ -49,17 +49,16 @@ $(document).ready(function() {
       userDataObject.results.forEach(function(user){
         $('.results').append(`
           <div id="${user.name.first+user.name.last}" class="user">
-            <p>${user.name.first+" "+user.name.last}</p>
+            <h3>${user.name.first+" "+user.name.last}</h3>
             <img src='${user.picture.large}'>
+            <div class="additionalInfo">
+              <p>Cell: ${user.cell}</p>
+              <p>Email: ${user.email}</p>
+            </div>
           </div>`);
-          $(`#${user.name.first+user.name.last}`).click(function(){
-            const profileInfo= users.getIndividual(user.name.first,user.name.last);
-            profileInfo.then(function(response){
-              const parsedInfo= JSON.parse(response);
-              const phone = parsedInfo.results[0].name.first;
-              console.log(phone);
-            })
-          })
+      });
+      $(".user").click(function(){
+        $(this).toggleClass('selected')
       });
     })
   })
